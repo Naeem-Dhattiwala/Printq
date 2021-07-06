@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="printq_custom_checkout_field" resource="default" engine="innodb" comment="Printq Custom Checkout Field">
+    	<column xsi:type="int" name="field_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Field Id"/>
+        <column xsi:type="varchar" name="field_code" nullable="false" length="255" comment="Field Code"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Defines Is Enabled"/>
+        <column xsi:type="varchar" name="store_ids" length="255" nullable="false" comment="Store Ids"/>
+        <column xsi:type="int" name="sort_order" padding="5" nullable="false" default="0" comment="Sort Order"/>
+        <column xsi:type="smallint" name="position" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Frontend position"/>
+        <column xsi:type="varchar" name="input_type" nullable="true" length="255" comment="Input Type"/>
+        <column xsi:type="varchar" name="frontend_label" nullable="true" length="255" comment="Frontend Label"/>
+        <column xsi:type="text" name="default_value" nullable="true" comment="Default Value"/>
+        <column xsi:type="smallint" name="in_customer_order_view" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Defines Show In Customer Order View"/>
+        <column xsi:type="smallint" name="in_admin_order_view" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Defines Show In Admin Order View"/>
+        <column xsi:type="smallint" name="in_order_conf_email" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Defines Show In Order Confirmation Email"/>
+        <column xsi:type="smallint" name="in_invoice_email" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Defines Show In Invoice Email"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="field_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_LABEL_FIELD_CODE">
+            <column name="field_code"/>
+        </constraint>
+    </table>
+    <table name="printq_custom_checkout_field_label" resource="default" engine="innodb" comment="Printq Custom Checkout Field Label">
+    	<column xsi:type="int" name="field_label_id" padding="5" unsigned="true" nullable="false" identity="true"
+                comment="Field Label Id"/>
+        <column xsi:type="int" name="field_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Field Id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store Id"/>
+        <column xsi:type="varchar" name="value" nullable="true" length="255" comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="field_label_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_LABEL_FIELD_ID_PRINTQ_CUSTOM_CHECKOUT_FIELD_FIELD_ID"
+                    table="printq_custom_checkout_field_label" column="field_id" referenceTable="printq_custom_checkout_field"
+                    referenceColumn="field_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_LABEL_STORE_ID_STORE_STORE_ID" table="printq_custom_checkout_field_label"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_LABEL_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+        <index referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_LABEL_FIELD_ID_STORE_ID" indexType="btree">
+            <column name="field_id"/>
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="printq_custom_checkout_field_option" resource="default" engine="innodb" comment="Printq Custom Checkout Field Option">
+        <column xsi:type="int" name="option_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Option Id"/>
+        <column xsi:type="int" name="field_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="field Id"/>
+        <column xsi:type="int" name="sort_order" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Sort Order"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_OPTION_FIELD_ID_PRINTQ_CUSTOM_CHECKOUT_FIELD_FIELD_ID"
+                    table="printq_custom_checkout_field_option" column="field_id" referenceTable="printq_custom_checkout_field"
+                    referenceColumn="field_id" onDelete="CASCADE"/>
+        <index referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_OPTION_FIELD_ID" indexType="btree">
+            <column name="field_id"/>
+        </index>
+    </table>
+    <table name="printq_custom_checkout_field_option_value" resource="default" engine="innodb" comment="Printq Custom Checkout Field Option Value">
+        <column xsi:type="int" name="value_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Value Id"/>
+        <column xsi:type="int" name="option_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Option Id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store Id"/>
+        <column xsi:type="varchar" name="value" nullable="true" length="255" comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="value_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_OPTION_VALUE_OPTION_ID_PRINTQ_CUSTOM_CHECKOUT_FIELD_OPTION_OPTION_ID"
+                    table="printq_custom_checkout_field_option_value" column="option_id" referenceTable="printq_custom_checkout_field_option"
+                    referenceColumn="option_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="EAV_ATTRIBUTE_OPTION_VALUE_STORE_ID_STORE_STORE_ID"
+                    table="printq_custom_checkout_field_option_value" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_OPTION_VALUE_OPTION_ID" indexType="btree">
+            <column name="option_id"/>
+        </index>
+        <index referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_OPTION_VALUE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="printq_custom_checkout_field_quote_values" resource="default" engine="innodb" comment="Printq Custom Checkout Field Quote Values">
+        <column xsi:type="int" name="value_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Value Id"/>
+        <column xsi:type="int" name="field_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Field Id"/>
+        <column xsi:type="int" name="quote_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Quote Id"/>
+        <column xsi:type="varchar" name="value" nullable="true" length="255" comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="value_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_QUOTE_VALUES_FIELD_ID_PRINTQ_CUSTOM_CHECKOUT_FIELD_FIELD_ID"
+                    table="printq_custom_checkout_field_quote_values" column="field_id" referenceTable="printq_custom_checkout_field"
+                    referenceColumn="field_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_QUOTE_VALUES_QUOTE_ID_QUOTE_ENTITY_ID"
+                    table="printq_custom_checkout_field_quote_values" column="quote_id" referenceTable="quote"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_QUOTE_VALUES_FIELD_ID" indexType="btree">
+            <column name="field_id"/>
+        </index>
+        <index referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_QUOTE_VALUES_QUOTE_ID" indexType="btree">
+            <column name="quote_id"/>
+        </index>
+    </table>
+    <table name="printq_custom_checkout_field_order_values" resource="default" engine="innodb" comment="Printq Custom Checkout Field Order Values">
+        <column xsi:type="int" name="value_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Value Id"/>
+        <column xsi:type="int" name="field_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Field Id"/>
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Order Id"/>
+        <column xsi:type="varchar" name="value" nullable="true" length="255" comment="Value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="value_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_ORDER_VALUES_FIELD_ID_PRINTQ_CUSTOM_CHECKOUT_FIELD_FIELD_ID"
+                    table="printq_custom_checkout_field_order_values" column="field_id" referenceTable="printq_custom_checkout_field"
+                    referenceColumn="field_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_ORDER_ID_SALES_ORDER_ENTITY_ID"
+                    table="printq_custom_checkout_field_order_values" column="order_id" referenceTable="sales_order"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_ORDER_VALUES_FIELD_ID" indexType="btree">
+            <column name="field_id"/>
+        </index>
+        <index referenceId="PRINTQ_CUSTOM_CHECKOUT_FIELD_ORDER_VALUES_ORDER_ID" indexType="btree">
+            <column name="order_id"/>
+        </index>
+    </table>
+</schema>

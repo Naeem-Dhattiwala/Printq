@@ -1,0 +1,42 @@
+<?php
+/**
+ *
+ * @author        Krunal Padmashali <kp@cloudlab.at>.
+ * @copyright     Copyright(c) 2020 CloudLab AG (https://cloudlab.ag)
+ * @link          https://cloudlab.ag/
+ * @date          07/01/2021
+ */
+?>
+<div class="block block-order-details-view">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Additional Info')) ?></strong>
+    </div>
+    <div class="block-content">
+        <?php foreach ($this->getAttributeValue() as $value) : ?>
+            <?php foreach ($this->getAttributeLabel() as $label) : ?>
+                <?php if ($label->getField_id() == $value->getField_id()) : ?>
+                    <div class="box">
+                        <strong class="box-title">
+                            <span><?= $block->escapeHtml(__($label->getFrontend_label())); ?></span>
+                        </strong>
+                        <div class="box-content">
+                            <?= /** @noEscape */ $value->getValue(); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach;?>
+            <?php foreach ($this->getAttributeDefaultLabel() as $dafaultlabel) : ?>
+                <?php if ($dafaultlabel->getField_id() == $value->getField_id()) : ?>
+                    <div class="box">
+                        <strong class="box-title">
+                            <span><?= $block->escapeHtml(__($dafaultlabel->getValue())); ?></span>
+                        </strong>
+                        <div class="box-content">
+                            <?= /** @noEscape */ $value->getValue(); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach;?>
+        <?php endforeach;?>
+    </div>
+</div>

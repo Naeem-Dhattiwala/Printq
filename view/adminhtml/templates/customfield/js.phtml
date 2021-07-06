@@ -1,0 +1,150 @@
+<?php
+/**
+ *
+ * @author        Krunal Padmashali <kp@cloudlab.at>.
+ * @copyright     Copyright(c) 2020 CloudLab AG (https://cloudlab.ag)
+ * @link          https://cloudlab.ag/
+ * @date          07/01/2021
+ */
+use Magento\Catalog\Helper\Data;
+
+/** @var \Magento\Backend\Block\Template $block */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+?>
+
+<?php
+/** @var \Magento\Framework\Json\Helper\Data $jsonHelper */
+$jsonHelper = $block->getData('jsonHelper');
+$scriptString = <<<script
+require([
+    "jquery",
+    'Magento_Ui/js/modal/alert',
+    'Magento_Ui/js/modal/prompt',
+    'uiRegistry',
+    "collapsable",
+    "prototype"
+], function(jQuery, alert, prompt, registry){
+
+function toggleApplyVisibility(select) {
+    if ($(select).value == 1) {
+        $(select).next('select').removeClassName('no-display');
+        $(select).next('select').removeClassName('ignore-validate');
+
+    } else {
+        $(select).next('select').addClassName('no-display');
+        $(select).next('select').addClassName('ignore-validate');
+        var options = $(select).next('select').options;
+        for( var i=0; i < options.length; i++) {
+            options[i].selected = false;
+        }
+    }
+}
+function getFrontTab() {
+    if ($('printq_customfield_tabs_front')) {
+        return $('printq_customfield_tabs_front').up('li');
+    } else {
+        return $('front_fieldset-wrapper');
+    }
+}
+
+function checkOptionsPanelVisibility(){
+    if($('manage-options-panel')){
+        var panelId = 'manage-options-panel',
+            panel = $(panelId),
+            panelFieldSet = panel.up('.fieldset'),
+            activePanelClass = 'selected-type-options';
+
+        if($('input_type') && ($('input_type').value=='radio' || $('input_type').value=='checkbox' || $('input_type').value=='select' || $('input_type').value=='multiselect')){
+            panelFieldSet.show();
+            jQuery(panel).addClass(activePanelClass);
+            registry.get(panelId, function () {
+                jQuery('#' + panelId).trigger('render');
+            });
+        }
+        else {
+            panelFieldSet.hide();
+            jQuery(panel).removeClass(activePanelClass);
+        }
+    }
+}
+
+function bindAttributeInputType()
+{
+    checkOptionsPanelVisibility();
+    switchDefaultValueField();
+}
+
+function switchDefaultValueField()
+{
+    if (!$('input_type')) {
+        return;
+    }
+
+    var currentValue = $('input_type').value;
+
+    var defaultValueTextVisibility = false;
+    var defaultValueTextareaVisibility = false;
+    var defaultValueDateVisibility = false;
+    var defaultValueYesnoVisibility = false;
+    var scopeVisibility = true;
+
+    switch (currentValue) {
+        case 'radio':
+        case 'select':
+            optionDefaultInputType = 'radio';
+            break;
+
+        case 'checkbox':
+        case 'multiselect':
+            optionDefaultInputType = 'checkbox';
+            break;
+
+        case 'textarea':
+            defaultValueTextareaVisibility = true;
+            break;
+
+        default:
+            defaultValueTextVisibility = true;
+            break;
+    }
+
+    var elems = document.getElementsByName('default[]');
+    for (var i = 0; i < elems.length; i++) {
+        elems[i].type = optionDefaultInputType;
+    }
+}
+
+function setRowVisibility(id, isVisible)
+{
+    if ($(id)) {
+        var td = $(id).parentNode;
+        var tr = $(td.parentNode);
+
+        if (isVisible) {
+            tr.show();
+        } else {
+            tr.blur();
+            tr.hide();
+        }
+    }
+}
+
+if($('input_type')){
+    Event.observe($('input_type'), 'change', bindAttributeInputType);
+}
+
+jQuery(function($) {
+    bindAttributeInputType();
+});
+
+window.setRowVisibility = setRowVisibility;
+window.switchDefaultValueField = switchDefaultValueField;
+window.bindAttributeInputType = bindAttributeInputType;
+window.checkOptionsPanelVisibility = checkOptionsPanelVisibility;
+window.getFrontTab = getFrontTab;
+window.toggleApplyVisibility = toggleApplyVisibility;
+
+});
+script;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="printq_customfields_fields_listing_data_source" xsi:type="string">Printq\CheckoutFields\Model\ResourceModel\CustomField\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Printq\CheckoutFields\Model\ResourceModel\CustomField\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">printq_custom_checkout_field</argument>
+            <argument name="resourceModel" xsi:type="string">Printq\CheckoutFields\Model\ResourceModel\CustomField</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CustomFieldsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Printq\CheckoutFields\Model\ResourceModel\Contact\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CustomFieldsGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CustomFieldsGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin disabled="false" name="Printq_CheckoutFields_Plugin_Magento_Quote_Model_ShippingAddressManagement" sortOrder="10" type="Printq\CheckoutFields\Plugin\Quote\Model\ShippingAddressManagement"/>
+    </type>
+    <type name="Magento\Checkout\Model\PaymentInformationManagement">
+        <plugin disabled="false" name="Printq_CheckoutFields_Plugin_Magento_Quote_Model_PaymentInformationManagementPlugin" sortOrder="11" type="Printq\CheckoutFields\Plugin\Quote\Model\PaymentInformationManagementPlugin"/>
+    </type>
+    <type name="Magento\Checkout\Model\GuestPaymentInformationManagement">
+        <plugin name="Printq_CheckoutFields_Plugin_Magento_Quote_Model_GuestPaymentInformationManagementPlugin" type="Printq\CheckoutFields\Plugin\Quote\Model\GuestPaymentInformationManagementPlugin" />
+    </type>
+</config>

@@ -1,0 +1,60 @@
+<?php
+/**
+ *
+ * @author        Krunal Padmashali <kp@cloudlab.at>.
+ * @copyright     Copyright(c) 2020 CloudLab AG (https://cloudlab.ag)
+ * @link          https://cloudlab.ag/
+ * @date          07/01/2021
+ */
+?>
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?= __('Extra Information') ?></span>
+        <div class="actions"><?= $this->getOrderAttributeEditLink(); ?></div>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information">
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-information-table">
+                    <?php if (!empty($this->getAttributeValue())) : ?>
+                        <?php foreach ($this->getAttributeValue() as $value) : ?>
+                            <?php foreach ($this->getAttributeLabel() as $label) : ?>
+                                <?php if ($label->getField_id() == $value->getField_id()) : ?>
+                                    <tr>
+                                        <th>
+                                            <?= $block->escapeHtml($label->getFrontend_label()); ?>
+                                        </th>
+                                        <td>
+                                            <strong>
+                                                <?= $block->escapeHtml($value->getValue()); ?>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <?php foreach ($this->getAttributeDefaultLabel() as $defaultlabel) : ?>
+                                <?php if ($defaultlabel->getField_id() == $value->getField_id()) : ?>
+                                    <tr>
+                                        <th>
+                                            <?= $block->escapeHtml($defaultlabel->getValue()); ?>
+                                        </th>
+                                        <td>
+                                            <strong>
+                                                <?= $block->escapeHtml($value->getValue()); ?>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <td><?= $block->escapeHtml(__('No attributes for this order')); ?></td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

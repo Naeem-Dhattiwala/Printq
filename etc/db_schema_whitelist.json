@@ -1,0 +1,72 @@
+{
+    "printq_custom_checkout_field": {
+        "column": {
+            "field_id": true,
+            "field_code": true,
+            "status": true,
+            "store_ids": true,
+            "sort_order": true,
+            "position": true,
+            "backend_model": true,
+            "backend_type": true,
+            "frontend_model": true,
+            "frontend_label": true,
+            "in_customer_order_view": true,
+            "in_order_conf_email": true,
+            "in_invoice_email": true,
+            "input_type": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PRINTQ_CUSTOM_CHECKOUT_FIELD_FIELD_CODE": true
+        }
+    },
+    "printq_custom_checkout_field_label": {
+        "column": {
+            "field_label_id": true,
+            "field_id": true,
+            "store_id": true,
+            "value": true
+        },
+        "index": {
+            "PRINTQ_CUSTOM_CHECKOUT_FIELD_LABEL_STORE_ID": true,
+            "PRINTQ_CUSTOM_CHECKOUT_FIELD_LABEL_FIELD_ID_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_911E4D9A5647414EFE3C6C580A470C41": true,
+            "PRINTQ_CUSTOM_CHECKOUT_FIELD_LABEL_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "printq_custom_checkout_field_option": {
+        "column": {
+            "option_id": true,
+            "field_id": true,
+            "sort_order": true
+        },
+        "index": {
+            "PRINTQ_CUSTOM_CHECKOUT_FIELD_OPTION_FIELD_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_BAFFF156903074C646E91E009F337828": true
+        }
+    },
+    "printq_custom_checkout_field_option_value": {
+        "column": {
+            "value_id": true,
+            "option_id": true,
+            "store_id": true,
+            "value": true
+        },
+        "index": {
+            "PRINTQ_CUSTOM_CHECKOUT_FIELD_OPTION_VALUE_OPTION_ID": true,
+            "PRINTQ_CUSTOM_CHECKOUT_FIELD_OPTION_VALUE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PRINTQ_CUSTOM_CHKT_FIELD_OPT_VAL_OPT_ID_EAV_ATTR_OPT_OPT_ID": true,
+            "PRINTQ_CUSTOM_CHKT_FIELD_OPT_VAL_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}

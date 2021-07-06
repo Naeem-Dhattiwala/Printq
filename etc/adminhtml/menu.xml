@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    	<add id="Printq_CheckoutFields::checkoutfields" title="Checkout Fields" module="Printq_CheckoutFields" sortOrder="1001" parent="Printq_Core::CloudLab" resource="Printq_CheckoutFields::checkoutfields"/>
+
+        <add id="Printq_CheckoutFields::fields" title="Manage Fields" module="Printq_CheckoutFields" sortOrder="10" action="printq_checkoutfields/checkoutfields" resource="Printq_CheckoutFields::fields" parent="Printq_CheckoutFields::checkoutfields"/>
+
+    </menu>
+</config>

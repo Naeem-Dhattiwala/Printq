@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <block class="Printq\CheckoutFields\Block\Adminhtml\CustomField\Edit\Tabs" name="customfields_edit_tabs">
+                <block class="Printq\CheckoutFields\Block\Adminhtml\CustomField\Edit\Tab\Main" name="main"/>
+                <block class="Printq\CheckoutFields\Block\Adminhtml\CustomField\Edit\Options\Labels" name="customfields_edit_tabs.labels" as="labels"/>
+                <container label="Configuration" name="configuration">
+                    <block class="Printq\CheckoutFields\Block\Adminhtml\CustomField\Edit\Tab\Config" name="config.base" as="base"/>
+                    <block class="Printq\CheckoutFields\Block\Adminhtml\CustomField\Edit\Options\Options" name="config.options" as="options"/>
+                </container>
+                <block class="Printq\CheckoutFields\Block\Adminhtml\CustomField\Edit\Tab\Front" name="customfields_edit_tabs.front" as="front"/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Printq\CheckoutFields\Block\Adminhtml\CustomField\Edit" name="customfield_edit_content"/>
+        </referenceContainer>
+        <referenceContainer name="js">
+            <block class="Magento\Backend\Block\Template" name="attribute_edit_js" template="Printq_CheckoutFields::customfield/js.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
