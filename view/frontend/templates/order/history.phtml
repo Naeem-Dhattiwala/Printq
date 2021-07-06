@@ -1,0 +1,215 @@
+<?php
+$printblock = $block->getLayout()->createBlock('Printq\CustomerOrderSection\Block\Printq');
+$_orders = $block->getOrders();
+$block->getChildHtml('info') ?>
+<?php if ($_orders && count($_orders)) : ?>
+    <?php foreach ($_orders as $_order) : ?>
+        <div class="order-row row align-items-center">
+            <div class="order-row-list col-sm-8">
+                <ul class="">
+                    <?php 
+                        $items = $_order->getAllVisibleItems();
+                        foreach($items as $item): ?>
+                            <?php 
+                                $product = $printblock->getProduct($item->getProductId());
+                                $productImageUrl = $printblock->getMediaUrl() . 'catalog/product' . $product->getImage();
+                            ?>
+                            <li class="order-row-item" id="order-row-item-status-<?=$_order->getStatusLabel()?>">
+                                <div class="order-row-item-header">
+                                    <table class="order-row-item-header-table" rules="none">
+                                        <thead>
+                                            <th><?= $block->escapeHtml(__('BESTELLDATUM')) ?></th>
+                                            <th><?= $block->escapeHtml(__('AUFTRAGSNUMMER')) ?></th>
+                                            <th><?= $block->escapeHtml(__('ZAHLUNGSART')) ?></th>
+                                            <th><?= $block->escapeHtml(__('PROJEKTNAME')) ?></th>
+                                        </thead>
+                                        <tbody>
+                                            <td><?= substr($block->escapeHtml(__($item->getCreated_at())), 0, 10) ?></td>
+                                            <td><?= $block->escapeHtml(__($item->getOrder_id())) ?></td>
+                                            <td><?= $block->escapeHtml(__($_order->getPayment()->getAdditionalInformation("method_title"))) ?></td>
+                                            <td><?= $block->escapeHtml(__($item->getProject_name())) ?></td>
+                                        </tbody>
+                                        <tr>
+                                            <td colspan="4">
+                                                <?php
+                                                    if ($_order->getBaseTotalDue() == 0) {
+                                                        echo '<span class="order-row-item-bezahlt">'.$block->escapeHtml(__('bezahlt')).'</span>';
+                                                    }else{
+                                                        echo '<span class="order-row-item-nicht-bezahlt">'.$block->escapeHtml(__('nicht bezahlt')).'</span>';
+                                                    }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="order-row-item-content">
+                                    <div class="order-row-product-image">
+                                        <img src="<?php echo $productImageUrl;?>" width="100"/>
+                                    </div>
+                                    <div class="order-row-product-name-price">
+                                        <h3><?= substr($block->escapeHtml($item->getName()), 0, 20) .' '.' '.round($block->escapeHtml($item->getPrice())) . $printblock->getCurrencySymbol() ?></h3>
+                                    </div>
+                                    <div class="order-row-product-status">
+                                        <div class="order-row-product-image">
+                                            <img src="<?php echo $this->getViewFileUrl('Printq_CustomerOrderSection::images/statusbar.png'); ?>" />
+                                        </div>
+                                        <div class="order-row-product-status-label">
+                                            <span class="order-row-product-status-text-neo">Neu</span>
+                                            <span class="order-row-product-status-text-auftrags">Auftrags-vorbereitung</span>
+                                            <span class="order-row-product-status-text-druck">Druck</span>
+                                            <span class="order-row-product-status-text-versandt">Versandt</span>
+                                            <span class="order-row-product-status-text-liefrung">Lieferung</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-row-item-footer">
+                                    <div class="order-row-product-print">
+                                        <div class="order-row-item-footer-left">
+                                            <a href="<?= $printblock->getOrderPrintUrl() . $_order->getId(); ?>" class="action view">
+                                                <?= $block->escapeHtml(__('Druckdaten')) ?>
+                                            </a>
+                                        </div>
+                                        <div class="order-row-item-footer-right">
+                                            <a class="order-row-item-auftragdetails" href="javascript:void(0);" id="click-here-<?=$item->getId()?>">
+                                                <?= $block->escapeHtml(__('Auftragdetails')) ?>
+                                            </a>
+                                            <div id="popup-modal-main-<?=$item->getId()?>" style="display:none;">
+                                                <div class="order-row-item-footer-modal-header">
+                                                    <center>
+                                                        <span><?= $block->escapeHtml(__('Auftragsdetails')) . $block->escapeHtml(__('(Prod.ID = '.$item->getProductId().' '. '-'.' '.substr($block->escapeHtml(__($product->getCreated_at())), 0, 10).')'))?></span>
+                                                    </center>
+                                                </div>
+                                                <div class="order-row-item-footer-modal-content">
+                                                    <div class="order-row-item-footer-modal-content-product-image">
+                                                        <img src="<?php echo $productImageUrl;?>" width="100"/>
+                                                    </div>
+                                                    <div class="order-row-item-footer-modal-content-product-attibute">
+                                                        <span class="order-row-product-attibute"><?= $block->escapeHtml(__('PRODUKTGRUPPE : ')) . $block->escapeHtml(__('Flyer'))?></span><br>
+                                                        <span class="order-row-product-attibute"><?= $block->escapeHtml(__('FORMAT : ')) . $block->escapeHtml(__(' DIN-A6'))?></span><br>
+                                                        <span class="order-row-product-attibute"><?= $block->escapeHtml(__('Papier : ')) . $block->escapeHtml(__(' 135g BD glz,'))?></span><br>
+                                                        <span class="order-row-product-attibute"><?= $block->escapeHtml(__('Ausrichutung : ')) . $block->escapeHtml(__('quer'))?></span><br>
+                                                        <span class="order-row-product-attibute"><?= $block->escapeHtml(__('Fabrekiet : ')) . $block->escapeHtml(__('4/0'))?></span><br>
+                                                        <span class="order-row-product-attibute"><?= $block->escapeHtml(__('Seitanzahl : ')) . $block->escapeHtml(__('quer'))?></span><br>
+                                                        <span class="order-row-product-attibute"><?= $block->escapeHtml(__('Menge : ')) . $block->escapeHtml(__(round($item->getQty_ordered()) . 'Stk'))?></span><br>
+                                                        <span class="order-row-product-attibute"><?= $block->escapeHtml(__('Versand : ')) . $block->escapeHtml(__($_order->getShipping_method()))?></span>
+                                                    </div>
+                                                    <div class="order-row-item-footer-modal-content-product-shipping-address">
+                                                        <h2><?= $block->escapeHtml(__('Lieferadresse')) ?></h2>
+                                                        <?php
+                                                            $shippingAddress = $printblock->getShippingAddressHtml($item->getOrder_id());
+                                                        ?>
+                                                        <span class="order-shipping-address"><?= $block->escapeHtml(__(round($item->getQty_ordered()) .' '. 'Stk')). ' ' . $block->escapeHtml(__(strip_tags($shippingAddress)))?></span>
+                                                    </div>
+                                                    <div class="order-row-item-footer-modal-content-product-billing-address">
+                                                        <h2><?= $block->escapeHtml(__('Rechunadresse')) ?></h2>
+                                                        <?php
+                                                            $shippingAddress = $printblock->getBillingAddressHtml($item->getOrder_id());
+                                                        ?>
+                                                        <span class="order-billing-address"><?= $block->escapeHtml(__(round($item->getQty_ordered()) .' '. 'Stk')). ' ' . $block->escapeHtml(__(strip_tags($shippingAddress)))?></span>
+                                                    </div>
+                                                    <div class="order-row-item-footer-modal-content-product-miscalleneous">
+                                                        <h2><?= $block->escapeHtml(__('Sonstiges')) ?></h2>
+                                                        <span class="order-item-payment-title"><?= $block->escapeHtml(__('Bezahlart : ')) . $block->escapeHtml(__($_order->getPayment()->getAdditionalInformation("method_title"))) ?></span><br>
+                                                        <span class="order-item-payment-status"><?= $block->escapeHtml(__('Bezahlartstatus : ')) ?>
+                                                            <?php
+                                                                if ($_order->getBaseTotalDue() == 0) {
+                                                                    echo $block->escapeHtml(__('bezahlt'));
+                                                                }else{
+                                                                    echo $block->escapeHtml(__('nicht bezahlt'));
+                                                                }
+                                                            ?>
+                                                        </span><br>
+                                                        <span class="order-item-payment-amount"><?= $block->escapeHtml(__('Rechnungssume : ')) . round($block->escapeHtml($_order->getGrand_total())) . $printblock->getCurrencySymbol() . ' ' . 'bruttu' . ' ' . $block->escapeHtml(__('('.$_order->getBaseTotalDue()) . ' ' . 'netto' .')') ?></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                                if ($_order->hasInvoices()) {
+                                                    ?>
+                                                    <a class="order-row-item-rechnung" href="<?= $printblock->getOrderInvoiceUrl() . $_order->getId(); ?>" class="action view">
+                                                        <?= $block->escapeHtml(__('Rechnung')) ?>
+                                                    </a>
+                                                    <?php
+                                                }
+                                            ?>
+                                            <button class="order-row-item-dropdown" id="<?=$item->getId();?>">
+                                                <?= $block->escapeHtml(__('Weitere Aktionen')) ?>
+                                            </button>
+                                            <div class="drodown-modal-main-order-item" id="drodown-modal-main-<?=$item->getId();?>" style="display: none;">
+                                                <h2 class="drodown-modal-main-order-item-header">Auftrag - Verlauf</h2>
+                                                <div class="drodown-modal-main-order-item-list-1">
+                                                    <span class="drodown-modal-main-order-item-list-detail"><?= $block->escapeHtml(__('Aftrag neu - ')) . substr($block->escapeHtml(__($_order->getCreated_at())), 0, 16) ?></span><br>
+                                                    <span class="drodown-modal-main-order-item-list-detail"><?= $block->escapeHtml(__('Bestellbestätigung gesendet auf  ')) . substr($block->escapeHtml(__($_order->getCreated_at())), 0, 10) . ' ' . $block->escapeHtml(__($_order->getCustomerEmail()));?></span><br>
+                                                    <?php
+                                                        if ($_order->hasInvoices()) {
+                                                            ?>
+                                                            <span><?= $block->escapeHtml(__('Rechnung versedet an : ')) . substr($block->escapeHtml(__($_order->getCreated_at())), 0, 10) . ' ' . $block->escapeHtml(__($_order->getCustomerEmail()));?></span>
+                                                            <?php
+                                                        }
+                                                    ?>
+                                                </div><br><br><br>
+                                                <div class="drodown-modal-main-order-item-list-2">
+                                                    <span class="drodown-modal-main-order-item-list-detail"><?= $block->escapeHtml(__('Drukdaten Upload ')) . $block->escapeHtml(__('dd.mm.yyyy | Uhreziet')) ?></span><br>
+                                                    <span><?= $block->escapeHtml(__('Bierbeiten rut rechfagen rea@flyerdevil.de')) ?></span><br>
+                                                </div><br><br><br>
+                                                <div class="drodown-modal-main-order-item-list-3">
+                                                    <span class="drodown-modal-main-order-item-list-detail"><?= $block->escapeHtml(__('Drukdaten Upload ')) . $block->escapeHtml(__('dd.mm.yyyy | Uhreziet')) ?></span><br>
+                                                    <span class="drodown-modal-main-order-item-list-detail"><?= $block->escapeHtml(__('Fehermeldung   ')) ?></span><br>
+                                                </div><br><br><br>
+                                                <div class="drodown-modal-main-order-item-list-4">
+                                                    <span class="drodown-modal-main-order-item-list-detail"><?= $block->escapeHtml(__('- Bestellung gesendet: TT.MM.JJJJ (Mind Tracking: Nr. = Link)')) ?></span><br>
+                                                </div><br><br><br>
+                                                <div class="drodown-modal-main-order-item-list-5">
+                                                    <button class="drodown-modal-main-order-item-list-complaint-button"><?= $block->escapeHtml(__('Reklamation')) ?></button><br>
+                                                </div>
+                                            </div>
+                                            <script>
+                                                require(
+                                                    [
+                                                        'jquery',
+                                                        'Magento_Ui/js/modal/modal'
+                                                    ],
+                                                    function($, modal) {
+                                                        var options = {
+                                                            type: 'popup',
+                                                            responsive: true,
+                                                            innerScroll: true,
+                                                            modalClass: 'order-row-poppup-model-item',
+                                                            buttons: [{
+                                                                text: $.mage.__('Close'),
+                                                                class: 'order-row-poppup-model-item-close',
+                                                                click: function () {
+                                                                    this.closeModal();
+                                                                }
+                                                            }]
+                                                        };
+
+                                                        var popup = modal(options, $('#popup-modal-main-<?=$item->getId()?>'));
+                                                        $("#click-here-<?=$item->getId()?>").on('click',function(){ 
+                                                            $("#popup-modal-main-<?=$item->getId()?>").modal("openModal");
+                                                        });
+                                                        $('#<?=$item->getId();?>').click(function(){
+                                                            $('#drodown-modal-main-<?=$item->getId();?>').toggle();
+                                                        });
+                                                    }
+                                                );
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                    <?php endforeach;?>
+                </ul>
+            </div>
+        </div>
+    <?php endforeach;?>
+     <!-- To Display Pagination  -->
+     <?php if ($block->getPagerHtml()) : ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif ?>
+    <?php else : ?>
+        <div class="message info empty">
+            <span><?= $block->escapeHtml(__('You have placed no orders.')) ?></span>
+        </div>
+<?php endif ?>

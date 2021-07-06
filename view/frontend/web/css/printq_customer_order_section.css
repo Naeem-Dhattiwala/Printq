@@ -1,0 +1,42 @@
+.order-row-item-header {border: 1px solid;border-color: gainsboro;}
+span.order-row-item-bezahlt {margin: 405px; color: #00802b;}
+span.order-row-item-nicht-bezahlt {margin: 390px; color: #e60000;}
+.sales-order-history .modal-inner-wrap { max-width: 600px;}
+#order-row-item-status-Canceled{background-color: #FFB6C1;}
+#order-row-item-status-Canceled .order-row-item-footer{display: none !important;}
+.order-row-item{list-style-type: none;}
+.order-row-product-image{float: left;}
+.order-row-product-status{text-align: end;}
+.order-row-product-status-label{text-align: end;}
+.order-row-product-status-text-neo{padding: 15px;}
+.order-row-product-status-text-auftrags{padding: 13px;}
+.order-row-product-status-text-druck{padding: 29px;}
+.order-row-product-status-text-versandt{padding: 46px;}
+.order-row-product-status-text-liefrung{padding: 0px;}
+.order-row-item-footer-left{text-align: left;}
+.order-row-item-footer-right{text-align: right;}
+.order-row-item-footer-modal-content-product-image{float: left;}
+.order-row-item-footer-modal-content-product-attibute{text-align: -webkit-right;}
+.drodown-modal-main-order-item { border: 1px solid; border-color: gainsboro; max-width: 415px; text-align: left; margin: 0px 0px 0px 507px; position: absolute; right: 0; width: 100%; background: #ffffff; padding: 25px; box-sizing: border-box; z-index: 11; }
+.drodown-modal-main-order-item .drodown-modal-main-order-item-header { font-weight: bold; font-size: 18px; }
+.order-row-item .order-row-item-content { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.order-row-item-footer{ display: inline-block; margin: 0px; padding: 0px; width: 100%; }
+.order-row-item-footer .order-row-product-print{ float: left; margin: 0px; padding: 0px; width: 100%;}
+.order-row-item-footer .order-row-product-print .order-row-item-footer-left{float: left; margin: 0px; padding: 0px;}
+.order-row-item-footer .order-row-product-print .order-row-item-footer-left a.action.view { background: url(../images/print_icon.png) no-repeat left center; padding-left: 25px; color: #636975; font-size: 17px; margin-right: 20px;}
+.order-row-item-footer .order-row-product-print .order-row-item-footer-right{float: right; margin: 0px; padding: 0px; position: relative;}
+.order-row-item-footer .order-row-product-print .order-row-item-footer-right a.order-row-item-auftragdetails { background: url(../images/info_icon.png) no-repeat left center; padding-left: 25px; color: #636975; font-size: 17px; margin-left: 20px;}
+.order-row-item-footer .order-row-product-print .order-row-item-footer-right a.order-row-item-rechnung { background: url(../images/download_icon.png) no-repeat left center; padding-left: 25px; color: #636975; font-size: 17px; margin-left: 20px;}
+.order-row-item-footer .order-row-product-print .order-row-item-footer-right .order-row-item-dropdown { background: #ffffff; box-shadow: none; margin-left: 20px; position: relative; padding: 10px 35px 10px 15px; color: #636975; font-size: 17px; }
+.order-row-item-footer .order-row-product-print .order-row-item-footer-right .order-row-item-dropdown::after { content: '\e622'; font-size: 12px; line-height: 20px; font-family: 'luma-icons'; position: absolute; right: 10px; top: 50%; transform: translate(0, -50%); }
+.modal-popup.order-row-poppup-model-item .modal-footer{ display: none; }
+.modal-popup.order-row-poppup-model-item .order-row-item-footer-modal-header { display: inline-block; margin: 0 0 20px; padding: 0px; width: 100%; }
+.modal-popup.order-row-poppup-model-item .order-row-item-footer-modal-header center { font-weight: bold; font-size: 18px; text-align: left; }
+.order-row-item-footer-modal-content-product-image{ width: 50%; padding: 0 10px; box-sizing: border-box;}
+.order-row-item-footer-modal-content-product-image img{ width: 100%; height: auto; }
+.order-row-item-footer-modal-content-product-attibute{ width: 50%; float: left; padding: 0 10px;  box-sizing: border-box;}
+.order-row-item-footer-modal-content-product-shipping-address{ width: 100%; display: inline-block; margin: 0 0 30px;}
+.order-row-item-footer-modal-content-product-miscalleneous{ width: 100%; display: inline-block; margin: 0 0 30px;}
+.order-row-item-footer-modal-content-product-billing-address{ width: 100%; display: inline-block; margin: 0 0 30px;}
+.order-row-item-footer-modal-content h2 { font-weight: bold; font-size: 18px; text-align: left; margin: 0 0 10px; }
+.order-row-product-attibute { line-height: 0.5; margin: 0 0 0px 0; display: block; }

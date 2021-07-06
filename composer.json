@@ -1,0 +1,22 @@
+{
+    "name": "printq/module-customerordersection",
+    "description": "Customize Frontend Customer Account ",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Printq",
+            "email": "info@printq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Printq\\CustomerOrderSection\\": ""
+        }
+    }
+}
