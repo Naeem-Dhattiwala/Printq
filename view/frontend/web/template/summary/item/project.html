@@ -1,0 +1,26 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<!-- ko foreach: getRegion('before_details') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+<!-- /ko -->
+<div class="product-item-details">
+
+    <div class="product-item-inner">
+        <div class="product-item-name-block">
+            <!-- ko if: (getProject($parent))-->
+                <span class="quote-item-project" data-bind="text: getProject($parent)"></span>
+            <!-- /ko -->
+        </div>
+        <!-- ko foreach: getRegion('after_details') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>
+<!-- ko foreach: getRegion('item_message') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+<!-- /ko -->
