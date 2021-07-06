@@ -1,0 +1,78 @@
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label data-bind="attr: {'for': getCode()}" class="label"><span data-bind="text: getTitle()"></span></label>
+    </div>
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            </div>
+        <fieldset data-bind="attr: {class: 'fieldset payment items allbank ' + getCode(), id: 'payment_form_' + getCode()}">
+            <div class="field _required">
+                <label data-bind="attr: {for: getCode() + '_kontoinhaber'}" class="label">
+                    <span><!-- ko i18n: 'Kontoinhaber'--><!-- /ko --></span>
+                </label>
+                <div class="control">
+                    <input data-validate="{'required-entry':true}" type="text" name="payment[kontoinhaber]" class="input-text" value=""
+                           data-bind="attr: {
+                                            id: getCode() + '_kontoinhaber',
+                                            title: $t('Kontoinhaber'),
+                                            'data-container': getCode() + '-kontoinhaber',
+                                            'data-validate': JSON.stringify({'required':true})},
+                                            valueUpdate: 'keyup' "/>
+                </div>
+            </div>
+            <div class="field _required">
+                <label data-bind="attr: {for: getCode() + '_iban'}" class="label">
+                    <span><!-- ko i18n: 'Iban'--><!-- /ko --></span>
+                </label>
+                <div class="control">
+                    <input data-validate="{'required-entry':true}" type="text" name="payment[iban]" class="input-text" value=""
+                           data-bind="attr: {
+                                            id: getCode() + '_iban',
+                                            title: $t('Iban'),
+                                            'data-container': getCode() + '-iban',
+                                            'data-validate': JSON.stringify({'required':true})},
+                                            valueUpdate: 'keyup' "/>
+                </div>
+            </div>
+            <div class="field _required">
+                <label data-bind="attr: {for: getCode() + '_bic'}" class="label">
+                    <span><!-- ko i18n: 'Bic'--><!-- /ko --></span>
+                </label>
+                <div class="control">
+                    <input data-validate="{'required-entry':true}" type="text" name="payment[bic]" class="input-text" value=""
+                           data-bind="attr: {
+                                            id: getCode() + '_bic',
+                                            title: $t('Bic'),
+                                            'data-container': getCode() + '-bic',
+                                            'data-validate': JSON.stringify({'required':true})},
+                                            valueUpdate: 'keyup' "/>
+                </div>
+            </div>
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button class="action primary checkout"
+                        type="submit"
+                        data-bind="
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')},
+                        css: {disabled: !isPlaceOrderActionAllowed()},
+                        enable: (getCode() == isChecked())
+                        "
+                        disabled>
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

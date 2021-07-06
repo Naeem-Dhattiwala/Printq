@@ -1,0 +1,20 @@
+<?php
+$blockObj= $block->getLayout()->createBlock('Printq\Lastschrift\Block\Adminhtml\Order\Index');
+foreach ($blockObj->getPaymentExtraInformation() as $value) {
+	$kontoinhaber = $value->getKontoinhaber();
+	$Iban = $value->getIban();
+	$Bic = $value->getBic();
+}
+?>
+<div class="admin__page-section-item-content">
+    <strong><?php echo __('Kontoinhaber : ') ?></strong>
+    <span class="order-payment-method-title"><?php echo $kontoinhaber;?></span>
+</div>
+<div class="admin__page-section-item-content">
+    <strong><?php echo __('IBAN : ') ?></strong>
+    <span class="order-payment-method-title"><?php echo $Iban; ?></span>
+</div>
+<div class="admin__page-section-item-content">
+    <strong><?php echo __('BIC : ') ?></strong>
+    <span class="order-payment-method-title"><?php echo $Bic; ?></span>                       
+</div>
