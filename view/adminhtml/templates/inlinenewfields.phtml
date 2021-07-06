@@ -1,0 +1,98 @@
+<style>
+  input {
+    border: none;
+  }
+</style>
+<?php
+    foreach ($block->getnewCustomTableFields() as $value2) {
+?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+         <span class="title">
+            <?php
+                echo $this->escapeHtml($value2->getProduct_name());;
+            ?>
+        </span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="order-information">
+            <table border="1" style="width: 791px;height: 100px;">
+                <div class="box">
+                    <tr>
+                        <th colspan="2"><strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Bezugsgröße') ?></span></strong></th>
+                        <th><strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('ME') ?></span></strong></th>
+                        <th><strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Eingabe') ?></span></strong></th>
+                    </tr>
+                </div>
+                    <form id="<?php echo $value2->getId();?>" name="<?php echo $value2->getId();?>" action="<?php echo $block->getFormAction().'id/'.$value2->getId()?>" method="post">
+                        <div class="box">
+                            <tr>
+                                <td><div class="box-content">BG1</div></td>
+                                <td><div class="box-content">Druck S/W</div></td>
+                                <td><div class="box-content"><input type="text" name="  me_druck_sw" value="<?php echo $this->escapeHtml($value2->getMe_druck_sw()); ?>"></div></td>
+                                <td><div class="box-content"><input type="text" name="  elingabe_druck_sw" value="<?php echo $this->escapeHtml($value2->getElingabe_druck_sw()); ?>"></div></td>
+                            </tr>
+                        </div>
+                        <div class="box">
+                            <tr>
+                                <td><div class="box-content">BG2</div></td>
+                                <td><div class="box-content">Druck Farbe</div></td>
+                                <td><div class="box-content"><input type="text" name="  me_druck_farbe" value="<?php echo $this->escapeHtml($value2->getMe_druck_farbe()); ?>"></div></td>
+                                <td><div class="box-content"><input type="text" name="  elingabe_druck_farbe" value="<?php echo $this->escapeHtml($value2->getElingabe_druck_farbe()); ?>"></div></td>
+                            </tr>
+                        </div>
+                        <div class="box">
+                            <tr>
+                                <td><div class="box-content">BG3</div></td>
+                                <td><div class="box-content">Druck Großfläche</div></td>
+                                <td><div class="box-content"><input type="text" name="  me_druck_grobflache" value="<?php echo $this->escapeHtml($value2->getMe_druck_grobflache()); ?>"></div></td>
+                                <td><div class="box-content"><input type="text" name="  elingabe_druck_grobflache" value="<?php echo $this->escapeHtml($value2->getElingabe_druck_grobflache()); ?>"></div></td>
+                            </tr>
+                        </div>
+                        <div class="box">
+                            <tr>
+                                <td><div class="box-content">BG4</div></td>
+                                <td><div class="box-content">Fertigungsstunden</div></td>
+                                <td><div class="box-content"><input type="text" name="  me_fertigungsstunden" value="<?php echo $this->escapeHtml($value2->getMe_fertigungsstunden()); ?>"></div></td>
+                                <td><div class="box-content"><input type="text" name="  elingabe_fertigungsstunden" value="<?php echo $this->escapeHtml($value2->getElingabe_fertigungsstunden()); ?>"></div></td>
+                            </tr>
+                        </div>
+                        <div class="box">
+                            <tr>
+                                <td><div class="box-content">BG5</div></td>
+                                <td><div class="box-content">Daten-Import</div></td>
+                                <td><div class="box-content"><input type="text" name="  me_daten_import" value="<?php echo $this->escapeHtml($value2->getMe_daten_import()); ?>"></div></td>
+                                <td><div class="box-content"><input type="text" name="  elingabe_daten_import" value="<?php echo $this->escapeHtml($value2->getElingabe_daten_import()); ?>"></div></td>
+                            </tr>
+                        </div>
+                        <div class="box">
+                            <tr>
+                                <td><div class="box-content">BG6</div></td>
+                                <td><div class="box-content">Daten-Update/Änderungsdienst</div></td>
+                                <td><div class="box-content"><input type="text" name="  me_daten_updaten_anderungsdienst" value="<?php echo $this->escapeHtml($value2->getMe_daten_updaten_anderungsdienst()); ?>"></div></td>
+                                <td><div class="box-content"><input type="text" name="  elingabe_daten_updaten_anderungsdienst" value="<?php echo $this->escapeHtml($value2->getElingabe_daten_updaten_anderungsdienst()); ?>"></div></td>
+                            </tr>
+                        </div>
+                        <div class="box">
+                            <tr>
+                                <td><div class="box-content">BG7</div></td>
+                                <td><div class="box-content">Euro/Material</div></td>
+                                <td><div class="box-content"><input type="text" name="  me_euro_material" value="<?php echo $this->escapeHtml($value2->getMe_euro_material()); ?>"></div></td>
+                                <td><div class="box-content"><input type="text" name="  elingabe_euro_material" value="<?php echo $this->escapeHtml($value2->getElingabe_euro_material()); ?>"></div></td>
+                            </tr>
+                        </div>
+                        <div class="box">
+                            <tr>
+                                <input type="hidden" name="id" value="<?php echo $value2->getId();?>">
+                                <input name="form_key" type="hidden" value="<?php /* @escapeNotVerified */ echo $block->getFormKey() ?>" />
+                                <td colspan="4"><center><input type="submit" name="submit" value="Submit" style="background-color: lightgreen;"></center></td>
+                            </tr>
+                        </div>
+                    </form>
+            </table>
+        </div>
+    </div>
+</section>
+<?php
+}
+?>

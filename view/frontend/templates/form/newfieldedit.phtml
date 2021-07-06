@@ -1,0 +1,30 @@
+<?php
+	if ($block->getCustomer()->getCustomAttribute('standort_new')) {
+		$standort_new = $block->getCustomer()->getCustomAttribute('standort_new')->getValue();
+	}
+	else{
+		$standort_new = '';
+	}
+	if ( $block->getCustomer()->getCustomAttribute('abteilung_new')) {
+		$abteilung_new = $block->getCustomer()->getCustomAttribute('abteilung_new')->getValue();
+	}
+	else{
+		$abteilung_new = '';
+	}
+?>
+<div class="field standort_new required">
+    <label class="label" for="standort_new">
+        <span><?= $block->escapeHtml(__('Standort')) ?></span>
+    </label>
+    <div class="control">
+        <input type="text" class="input-text" name="standort_new" id="standort_new" data-input="current-standort_new" value="<?php echo $block->escapeHtmlAttr($standort_new) ?>" required="" />
+    </div>
+</div>
+<div class="field abteilung_new required">
+    <label class="label" for="abteilung_new">
+        <span><?= $block->escapeHtml(__('Abteilung')) ?></span>
+    </label>
+    <div class="control">
+        <input type="text" class="input-text" name="abteilung_new" id="abteilung_new" data-input="current-abteilung_new" value="<?php echo $block->escapeHtmlAttr($abteilung_new) ?>" required="" />
+    </div>
+</div>

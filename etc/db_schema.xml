@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="printq_new_field_2" resource="default" engine="innodb">
+   	<column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+   	<column xsi:type="int" name="order_id" nullable="true" comment="Order Id"/>
+   	<column xsi:type="varchar" name="me_druck_sw" nullable="false" default="Stk"  length="25" comment="me_Druck_s" />
+      <column xsi:type="varchar" name="me_druck_farbe" nullable="false" default="Stk" length="25" comment="me_Druck_farbe" />
+      <column xsi:type="varchar" name="me_druck_grobflache" nullable="false" default="m2" length="25" comment="me_Druck_grobflache" />
+      <column xsi:type="varchar" name="me_fertigungsstunden" nullable="false" default="Std" length="25" comment="me_Fertigungsstunden" />
+      <column xsi:type="varchar" name="me_daten_import" nullable="false" default="Stk" length="25" comment="me_Daten_import" />
+      <column xsi:type="varchar" name="me_daten_updaten_anderungsdienst" nullable="false" default="Stk" length="25" comment="me_Daten_updaten_anderungsdienst" />
+      <column xsi:type="varchar" name="me_euro_material" nullable="false" length="25" default="Euro" comment="me_Euro_material" />
+      <column xsi:type="varchar" name="elingabe_druck_sw" nullable="false" length="25" comment="elingabe_Druck_s" />
+      <column xsi:type="varchar" name="elingabe_druck_farbe" nullable="false" length="25" comment="elingabe_Druck_farbe" />
+      <column xsi:type="varchar" name="elingabe_druck_grobflache" nullable="false" length="25" comment="elingabe_Druck_grobflache" />
+      <column xsi:type="varchar" name="elingabe_fertigungsstunden" nullable="false" length="25" comment="elingabe_Fertigungsstunden" />
+      <column xsi:type="varchar" name="elingabe_daten_import" nullable="false" length="25" comment="elingabe_Daten_import" />
+      <column xsi:type="varchar" name="elingabe_daten_updaten_anderungsdienst" nullable="false" length="25" comment="elingabe_Daten_updaten_anderungsdienst" />
+      <column xsi:type="varchar" name="elingabe_euro_material" nullable="false" length="25" comment="elingabe_Euro_material" />
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+   </table>
+</schema>

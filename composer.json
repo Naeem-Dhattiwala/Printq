@@ -1,0 +1,22 @@
+{
+    "name": "printq/module-newfields",
+    "description": "Add New Customer Field",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "cloudlab.ag",
+            "email": " info@cloudlab.ag"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Printq\\NewFields\\": ""
+        }
+    }
+}

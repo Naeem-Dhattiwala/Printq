@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<printqnewfield>
+			<printq>
+				<project>test</project>
+				<verteilerschlussel>test2</verteilerschlussel>
+			</printq>
+		</printqnewfield>
+	</default>
+</config>

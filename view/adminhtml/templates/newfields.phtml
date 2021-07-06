@@ -1,0 +1,60 @@
+<style type="text/css">
+    .order-information th{background-color: lightgrey;}
+</style>
+<?php
+    foreach ($block->getnewFields() as $value) {
+?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title">
+            <?php
+                echo $this->escapeHtml($value->getProduct_name());;
+            ?>
+        </span>
+        <div class="actions">
+            <a href="<?php echo $block->getEditAction().'id/'.$value->getId()?>">Edit</a>
+        </div>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="order-information">
+            <table border="1" style="width: 791px;height: 100px;">
+                <div class="box">
+                    <thead>
+                        <th><strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Projekt') ?></span></strong></th>
+                        <th><strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Verteilerschlussel') ?></span></strong></th>
+                        <th><strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Verrechnungskostenstelle') ?></span></strong></th>
+                        <th><strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Verrechnungskonto') ?></span></strong></th>
+                        <th><strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Bemerkung') ?></span></strong></th>
+                        <th><strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Wunschtermin') ?></span></strong></th>
+                    </thead>
+                </div>
+                <div class="box">
+                    <tbody>
+                        <td><div class="box-content"><center>
+                            <?php 
+                                echo $this->escapeHtml($value->getprojekt());
+                             ?></center></div>
+                        </td>
+                        <td><div class="box-content"><center>
+                            <?php echo $this->escapeHtml($value->getverteilerschlussel()); ?></center></div>
+                        </td>
+                        <td><div class="box-content"><center>
+                            <?php echo $this->escapeHtml($value->getVerrechnungskostenstelle()); ?></center></div>
+                        </td>
+                        <td><div class="box-content"><center>
+                            <?php echo $this->escapeHtml($value->getVerrechnungskonto()); ?></center></div>
+                        </td>
+                        <td><div class="box-content"><center>
+                            <?php echo $this->escapeHtml($value->getBemerkung()); ?></center></div>
+                        </td>
+                        <td><div class="box-content"><center>
+                            <?php echo $this->escapeHtml($value->getWunschtermin()); ?></center></div>
+                        </td>
+                    </tbody>
+                </div>
+            </table>
+    </div>
+</section>
+<?php
+}
+?>
