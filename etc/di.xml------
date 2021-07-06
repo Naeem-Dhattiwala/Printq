@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Api\OrderItemRepositoryInterface"
+                type="Printq\Core\Rewrite\Sales\Model\Order\ItemRepository"/>
+
+    <virtualType name="PrintqAdminChangesLoggerHandler" type="\Magento\Framework\Logger\Handler\Debug">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/adminChanges.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="PrintqAdminChangesLogger" type="Monolog\Logger" shared="true">
+        <arguments>
+            <argument name="name" xsi:type="string">PrintqAdminChangesLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">PrintqAdminChangesLoggerHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Printq\Core\Plugin\Config\Model\ConfigPlugin">
+        <arguments>
+            <argument name="logger" xsi:type="object">PrintqAdminChangesLogger</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Theme\Model\Theme">
+        <plugin sortOrder="1" name="printqCoreThemeExtend" type="Printq\Core\Plugin\Theme\Model\ThemePlugin" />
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Item">
+        <plugin sortOrder="1" name="printq_core_fix_rounding_issue" type="Printq\Core\Plugin\Quote\ItemPlugin" />
+    </type>
+
+<!--    <preference for="Magento\Tax\Model\Calculation\UnitBaseCalculator" type="Printq\Core\Rewrite\Tax\Calculation\UnitBaseCalculator" />-->
+<!--    <preference for="Magento\Tax\Model\Calculation\RowBaseCalculator" type="Printq\Core\Rewrite\Tax\Calculation\RowBaseCalculator" />-->
+<!--    <preference for="Magento\Tax\Model\Calculation\TotalBaseCalculator" type="Printq\Core\Rewrite\Tax\Calculation\TotalBaseCalculator" />-->
+    <type name="Magento\Tax\Model\Calculation">
+        <plugin sortOrder="1" name="printqCoreCalculation" type="Printq\Core\Plugin\Plugin\Tax\CalculationPlugin"/>
+    </type>
+
+    <preference for="PrintQ\StoreData" type="Printq\Core\Rewrite\StoreData"/>
+    <type name="Printq\Core\Rewrite\StoreData">
+        <arguments>
+            <argument name="webshopId" xsi:type="init_parameter">Printq\Core\App\State::PARAM_WEBSHOP_ID</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Sales\Model\Order\Email\SenderBuilder">
+        <arguments>
+            <argument name="transportBuilder" xsi:type="object">Printq\Core\Magento\Mail\Template\TransportBuilder</argument>
+        </arguments>
+    </type>
+</config>

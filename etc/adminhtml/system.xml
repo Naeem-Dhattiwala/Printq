@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="printq_core" translate="label" sortOrder="1000">
+            <label>PrintQ</label>
+        </tab>
+        <section id="printq" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+            <label>General</label>
+            <tab>printq_core</tab>
+            <resource>Printq_Core::config</resource>
+            <group id="store" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" sortOrder="20">
+                <label>Store Selection</label>
+                <field id="price_type" showInDefault="1" showInWebsite="0" showInStore="0" translate="label" sortOrder="1" type="select">
+                    <label>Price Type</label>
+                    <source_model>Printq\Core\Model\Config\Source\Store</source_model>
+                </field>
+            </group>
+            <group id="core_calculation" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Core Calculation</label>
+                <field id="disable_unit_price_rounding" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable unit price rounding</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <!-- <group id="product_preview" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" sortOrder="2">
+                <label>Product Preview</label>
+                <field id="enable" showInDefault="1" showInWebsite="1" showInStore="1" translate="label" sortOrder="1" type="select">
+                    <label>Enable Product Preview</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group> -->
+        </section>
+    </system>
+</config>

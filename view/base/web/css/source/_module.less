@@ -1,0 +1,14 @@
+@cloudlab-icons-admin__font-name-path: '@{baseDir}Printq_Core/fonts/cloudlab';
+@cloudlab-icons-admin__font-name : 'cloudlab';
+.lib-font-face (
+@family-name:@cloudlab-icons-admin__font-name,
+@font-path: @cloudlab-icons-admin__font-name-path,
+@font-weight: normal,
+@font-style: normal
+);
+
+
+.admin__menu .item-cloudlab.parent.level-0 > a:before {
+  font-family: @cloudlab-icons-admin__font-name;
+  content: "\e800";
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_system_config_changed_section_porto_design">
+        <observer name="printq_porto_design_save" instance="Printq\Core\Observer\SavePortoDesign" />
+    </event>
+
+    <event name="controller_action_predispatch">
+        <observer name="adminnotification" disabled="true" />
+    </event>
+</config>

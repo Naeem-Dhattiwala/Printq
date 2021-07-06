@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Printq_Core::CloudLab"
+             title="CloudLab"
+             module="Printq_Core"
+             sortOrder="20"
+             resource="Printq_Core::CloudLab" />
+
+        <add id="Printq_Core::Settings"
+             title="Settings"
+             module="Printq_Core"
+             sortOrder="999"
+             resource="Printq_Core::CloudLab"
+             parent="Printq_Core::CloudLab" />
+
+        <add id="Printq_Core::Settings_General"
+             title="General"
+             module="Printq_Core"
+             sortOrder="1"
+             action="adminhtml/system_config/edit/section/printq"
+             resource="Printq_Core::CloudLab"
+             parent="Printq_Core::Settings" />
+    </menu>
+</config>

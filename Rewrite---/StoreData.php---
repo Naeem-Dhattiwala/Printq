@@ -1,0 +1,21 @@
+<?php
+/**
+ * @author        Theodor Flavian Hanu <th@cloudlab.at>.
+ * @copyright    Copyright(c) 2020 CloudLab AG (http://cloudlab.ag)
+ * @link        http://www.cloudlab.ag
+ */
+
+namespace Printq\Core\Rewrite;
+
+
+class StoreData extends \PrintQ\StoreData
+{
+
+    public function __construct(string $webshopId = null)
+    {
+        if($webshopId) {
+            $webshopId = md5($webshopId);
+        }
+        parent::__construct($webshopId);
+    }
+}
