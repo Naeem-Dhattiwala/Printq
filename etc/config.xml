@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <printq>
+            <customer_addresses>
+                <enable>0</enable>
+                <customer_id>6</customer_id><!-- WE SET HERE DEFAULT ad@cloudlab.at account. No one ever should adjust, modify, delete this account-->
+            </customer_addresses>
+        </printq>
+    </default>
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Printq_CustomAddress::address_manage"
+             title="Manage Addresses"
+             translate="title"
+             module="Printq_CustomAddress"
+             sortOrder="60"
+             parent="Magento_Customer::customer"
+             action="customaddress/manage/index/"
+             resource="Magento_Customer::manage"/>
+    </menu>
+</config>

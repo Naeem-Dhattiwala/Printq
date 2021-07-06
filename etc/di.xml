@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin disabled="false" name="addRequired" sortOrder="1" type="Printq\CustomAddress\Plugin\Block\Checkout\LayoutProcessor"/>
+    </type>
+    <type name="Magento\Customer\Model\Address\CustomerAddressDataFormatter">
+        <plugin disabled="false" name="Printq_CustomAddress_Plugin_Customer_Model_Address_AddressDataFormatter"
+                sortOrder="10" type="Printq\CustomAddress\Plugin\Customer\Model\Address\AddressDataFormatterPlugin"/>
+    </type>
+    <type name="Magento\Customer\Model\Address\CustomerAddressDataProvider">
+        <plugin disabled="false" name="Printq_CustomAddress_Plugin_Customer_Model_Address_CustomerAddressDataProviderPlugin"
+                sortOrder="10" type="Printq\CustomAddress\Plugin\Customer\Model\Address\CustomerAddressDataProviderPlugin"/>
+    </type>
+    <preference for="Magento\Quote\Model\QuoteAddressValidator" type="Printq\CustomAddress\Rewrite\Model\Quote\PrintqQuoteAddressValidator" />
+
+    <virtualType name="Printq_CustomAddress_Manage_Grid_Data_Provider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Printq\CustomAddress\Model\ResourceModel\Address\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CustomAddressIdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CustomAddressIdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Printq\CustomAddress\Model\ResourceModel\Address\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">printq_default_address</argument>
+            <argument name="resourceModel" xsi:type="string">Printq\CustomAddress\Model\ResourceModel\Address</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="customaddress_manage_listing_data_source" xsi:type="string">Printq\CustomAddress\Model\ResourceModel\Address\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Printq\CustomAddress\Logger\Manage">
+        <arguments>
+            <argument name="name" xsi:type="string">CustomAddressLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="info" xsi:type="object">Printq\CustomAddress\Logger\Handler\Manage</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
