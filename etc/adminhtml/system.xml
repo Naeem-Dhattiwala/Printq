@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="printq_core" translate="label" sortOrder="999">
+			<label>Printq</label>
+		</tab>
+		<section id="checkoutshippingdropdown" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+			<label>CheckoutShippingDropdown</label>
+			<tab>printq_core</tab>
+			<resource>Printq_CheckoutShippingDropdown::config_printq_checkoutshippingdropdown</resource>
+			<group id="setting" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+				<label>Setting</label>
+				<field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Enable</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

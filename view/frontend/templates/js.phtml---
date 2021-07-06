@@ -1,0 +1,3 @@
+<script>
+  window.valuesConfig = '<?php echo $this->getPrintqCheckoutShippingDropdownYesNo(); ?>';
+</script>

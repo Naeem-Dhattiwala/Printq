@@ -1,0 +1,17 @@
+<script>
+  	window.valuesConfig = '<?php echo $block->canShowDropdown(); ?>';
+</script>
+<?php
+	if ($block->canShowDropdown() == 1) {
+		?>
+		<style type="text/css">
+			.shipping-address-item.selected-item {
+			    display: none;
+			}
+			.new-address-popup{
+				display: none;
+			}
+		</style>
+		<?php
+	}
+?>
