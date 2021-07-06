@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<!-- <preference for="Magento\Payment\Model\Method\AbstractMethod" type="Printq\NewPurchaseOrderStatus\Rewrite\Magento\Payment\Model\Method\AbstractMethod"/> -->
+	<type name="Magento\Payment\Model\Method\AbstractMethod">
+        <plugin name="invoice_status" type="Printq\NewPurchaseOrderStatus\Plugin\Model\Method\AbstractMethod" sortOrder="1" disabled="false"/>
+    </type>
+</config>
