@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Printq\StoreLocationsManagement\Api\StoreLocationsRepositoryInterface" type="Printq\StoreLocationsManagement\Model\StoreLocationsRepository"/>
+	<preference for="Printq\StoreLocationsManagement\Api\Data\StoreLocationsInterface" type="Printq\StoreLocationsManagement\Model\Data\StoreLocations"/>
+	<preference for="Printq\StoreLocationsManagement\Api\Data\StoreLocationsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Printq\StoreLocationsManagement\Model\ResourceModel\StoreLocations\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">printq_storelocationsmanagement_storelocations</argument>
+			<argument name="resourceModel" xsi:type="string">Printq\StoreLocationsManagement\Model\ResourceModel\StoreLocations\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="printq_storelocationsmanagement_storelocations_listing_data_source" xsi:type="string">Printq\StoreLocationsManagement\Model\ResourceModel\StoreLocations\Grid\Collection</item>
+				<item name="printq_storelocationsmanagement_softdrink_listing_data_source" xsi:type="string">Printq\StoreLocationsManagement\Model\ResourceModel\SoftDrink\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<preference for="Printq\StoreLocationsManagement\Api\SoftDrinkRepositoryInterface" type="Printq\StoreLocationsManagement\Model\SoftDrinkRepository"/>
+	<preference for="Printq\StoreLocationsManagement\Api\Data\SoftDrinkInterface" type="Printq\StoreLocationsManagement\Model\Data\SoftDrink"/>
+	<preference for="Printq\StoreLocationsManagement\Api\Data\SoftDrinkSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Printq\StoreLocationsManagement\Model\ResourceModel\SoftDrink\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">printq_storelocationsmanagement_softdrink</argument>
+			<argument name="resourceModel" xsi:type="string">Printq\StoreLocationsManagement\Model\ResourceModel\SoftDrink\Collection</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Printq\StoreLocationsManagement\ReferenceImageUpload" type="Printq\StoreLocationsManagement\Model\ImageUploader">
+	    <arguments>
+	        <argument name="baseTmpPath" xsi:type="string">printq/tmp/feature</argument>
+	        <argument name="basePath" xsi:type="string">printq/feature</argument>
+	        <argument name="allowedExtensions" xsi:type="array">
+	            <item name="jpg" xsi:type="string">jpg</item>
+	            <item name="jpeg" xsi:type="string">jpeg</item>
+	            <item name="gif" xsi:type="string">gif</item>
+	            <item name="png" xsi:type="string">png</item>
+	        </argument>
+	        <argument name="allowedMimeTypes" xsi:type="array">
+	            <item name="jpg" xsi:type="string">image/jpg</item>
+	            <item name="jpeg" xsi:type="string">image/jpeg</item>
+	            <item name="gif" xsi:type="string">image/gif</item>
+	            <item name="png" xsi:type="string">image/png</item>
+	        </argument> 
+	    </arguments>
+	</virtualType>
+	 
+	<type name="Printq\StoreLocationsManagement\Controller\Adminhtml\Feature\Image\Upload">
+	    <arguments>
+	        <argument name="imageUploader" xsi:type="object">Printq\StoreLocationsManagement\ReferenceImageUpload</argument>
+	    </arguments>
+	</type>
+</config>

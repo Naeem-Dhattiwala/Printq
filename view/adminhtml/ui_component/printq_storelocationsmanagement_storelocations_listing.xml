@@ -1,0 +1,231 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">printq_storelocationsmanagement_storelocations_listing.printq_storelocationsmanagement_storelocations_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>printq_storelocationsmanagement_storelocations_columns</spinner>
+		<deps>
+			<dep>printq_storelocationsmanagement_storelocations_listing.printq_storelocationsmanagement_storelocations_listing_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/new"/>
+				<class>primary</class>
+				<label translate="true">Add new StoreLocations</label>
+			</button>
+		</buttons>
+	</settings>
+	<dataSource name="printq_storelocationsmanagement_storelocations_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">storelocations_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Printq_StoreLocationsManagement::StoreLocations</aclResource>
+		<dataProvider name="printq_storelocationsmanagement_storelocations_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>storelocations_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="printq_storelocationsmanagement_storelocations_columns">
+		<settings>
+			<!-- <editorConfig>
+				<param name="selectProvider" xsi:type="string">printq_storelocationsmanagement_storelocations_listing.printq_storelocationsmanagement_storelocations_listing.printq_storelocationsmanagement_storelocations_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">storelocations_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" xsi:type="url" path="printq_storelocationsmanagement/StoreLocations/inlineEdit"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+			</editorConfig> -->
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">printq_storelocationsmanagement_storelocations_listing.printq_storelocationsmanagement_storelocations_listing.printq_storelocationsmanagement_storelocations_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>storelocations_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="storelocations_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="address">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Address</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="city">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">City</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="state">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">State</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="zip">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Zip</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="phone">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Phone</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="store_number">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Store Number</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="is_active">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Status</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<!-- <column name="customer_group">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Customer Group</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column> -->
+		<!-- <column name="products">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">products</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column> -->
+		<column name="frachise_owner">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Frachise Owner</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="area_director">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Area Director</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<!-- <column name="soft_drink">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">soft_drink</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">true</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column> -->
+		<actionsColumn name="actions" class="Printq\StoreLocationsManagement\Ui\Component\Listing\Column\StoreLocationsActions">
+			<settings>
+				<indexField>storelocations_id</indexField>
+				<resizeEnabled>false</resizeEnabled>
+				<resizeDefaultWidth>107</resizeDefaultWidth>
+			</settings>
+		</actionsColumn>
+	</columns>
+</listing>

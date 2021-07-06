@@ -1,0 +1,22 @@
+{
+    "name": "printq/module-storelocationsmanagement",
+    "description": "For Store Locations",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "CloudLab",
+            "email": "kp@cloudlab.at"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Printq\\StoreLocationsManagement\\": ""
+        }
+    }
+}

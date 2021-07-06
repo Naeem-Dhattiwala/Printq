@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Printq_StoreLocationsManagement::store_location_management" title="Store Locations" module="Printq_StoreLocationsManagement" sortOrder="1000" parent="Printq_Core::CloudLab" resource="Printq_StoreLocationsManagement::store_location_management"/>
+
+		<add id="Printq_StoreLocationsManagement::printq_storelocationsmanagement_storelocations" title="StoreLocations" module="Printq_StoreLocationsManagement" sortOrder="9999" resource="Magento_Backend::content" parent="Printq_StoreLocationsManagement::store_location_management" action="printq_storelocationsmanagement/storelocations/index"/>
+
+		<add id="Printq_StoreLocationsManagement::printq_storelocationsmanagement_softdrink" title="SoftDrink" module="Printq_StoreLocationsManagement" sortOrder="9999" resource="Magento_Backend::content" parent="Printq_StoreLocationsManagement::store_location_management" action="printq_storelocationsmanagement/softdrink/index"/>
+	</menu>
+</config>

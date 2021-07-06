@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="printq_storelocationsmanagement_storelocations" resource="default" engine="innodb" comment="printq_storelocationsmanagement_storelocations Table">
+		<column xsi:type="smallint" name="storelocations_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="storelocations_id"/>
+		</constraint>
+		<column name="address" nullable="true" xsi:type="text" comment="address"/>
+		<column name="city" nullable="true" xsi:type="text" comment="city"/>
+		<column name="state" nullable="true" xsi:type="text" comment="state"/>
+		<column name="zip" nullable="true" xsi:type="text" comment="zip"/>
+		<column name="phone" nullable="true" xsi:type="text" comment="phone"/>
+		<column name="store_number" nullable="true" xsi:type="text" comment="store_number"/>
+		<column name="is_active" nullable="true" xsi:type="boolean" comment="is_active"/>
+		<column name="customer_group" nullable="true" xsi:type="text" comment="customer_group"/>
+		<column name="products" nullable="true" xsi:type="text" comment="products"/>
+		<column name="frachise_owner" nullable="true" xsi:type="text" comment="frachise_owner"/>
+		<column name="area_director" nullable="true" xsi:type="text" comment="area_director"/>
+		<column name="soft_drink" nullable="true" xsi:type="text" comment="soft_drink"/>
+	</table>
+	<table name="printq_storelocationsmanagement_softdrink" resource="default" engine="innodb" comment="printq_storelocationsmanagement_softdrink Table">
+		<column xsi:type="smallint" name="softdrink_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="softdrink_id"/>
+		</constraint>
+		<column name="name" nullable="true" xsi:type="text" comment="name"/>
+		<column name="image_thumbnail" nullable="true" xsi:type="text" comment="image_thumbnail"/>
+		<column name="image_print" nullable="true" xsi:type="text" comment="image_print"/>
+	</table>
+</schema>
