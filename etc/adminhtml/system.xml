@@ -1,0 +1,131 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="payment" sortOrder="1000" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+			<group id="paymentmethods" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+				<label>Printq PaymentMethods</label>
+				<field id="active" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Enabled</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="title" type="text" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Title</label>
+				</field>
+				<field id="enable_for_register_checkout" type="select" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Enable for register checkout</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Enable for checkout type register. This setting is designed to override the general "Enabled" configuration.</comment>
+				</field>
+				<field id="order_status" type="select" sortOrder="30" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>New Order Status</label>
+					<source_model>Magento\Sales\Model\Config\Source\Order\Status\NewStatus</source_model>
+				</field>
+				<field id="sortorder" type="text" sortOrder="40" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Sort Order</label>
+				</field>
+				<field id="allowspecific" type="allowspecific" sortOrder="50" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Payment from Applicable Countries</label>
+					<source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+				</field>
+				<field id="specificcountry" type="multiselect" sortOrder="60" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Payment from Applicable Countries</label>
+					<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+					<can_be_empty>1</can_be_empty>
+				</field>
+				<field id="paymentdue" type="text" sortOrder="70" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Payment Due</label>
+					<comment>Number of days within the invoice is payable</comment>
+				</field>
+				<field id="calculateduedate" type="select" sortOrder="80" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Calculate Due Date</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Calculate the due date for the invoice based on the order date (e.g. Order Date: 10.03.2021, Payment Due: 10 days => Due date: 20.03.2021).</comment>
+				</field>
+				<field id="text_block_form" type="textarea" sortOrder="90" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Text for Payment Form</label>
+					<comment>Text after the selection of the payment method</comment>
+				</field>
+				<field id="text_block_info" type="text" sortOrder="100" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Text for Payment Info</label>
+					<comment>Text for the checkout progress info</comment>
+				</field>
+				<field id="min_order_total" type="text" sortOrder="110" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Minimum Order Total</label>
+				</field>
+				<field id="max_order_total" type="text" sortOrder="120" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Maximum Order Total</label>
+				</field>
+				<field id="specificgroup_all" type="select" sortOrder="130" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Enabled for all customer groups</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Set to "no" if you want to enable Invoice payment only for specific customer groups.</comment>
+				</field>
+				<field id="specificgroup" translate="label" type="multiselect" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                	<label>Customer Groups</label>
+                	<source_model>Magento\Customer\Model\ResourceModel\Group\Collection</source_model>
+                	<depends>
+					    <field id="specificgroup_all">0</field>
+					</depends>
+            	</field>
+            	<field id="customer_order_count" type="text" sortOrder="150" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Minimum Order Count</label>
+					<comment>Default: "0" for disabled check | Minimum count of orders (in the past) needed for the customer to use this payment method.</comment>
+				</field>
+				<field id="customer_order_amount" type="text" sortOrder="160" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Minimum Order Amount</label>
+					<comment>Default: "0" for disabled check | Minimum order amount (in the past) needed for the customer to use this payment method.</comment>
+				</field>
+				<field id="check_open_invoices" type="select" sortOrder="170" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Check Open Invoices</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Set to "yes" if you want to disallow this payment method if a customer has invoices with the invoice state "Open".</comment>
+				</field>
+				<field id="check_address" type="select" sortOrder="170" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Check Address</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Check if billing address != shipping address. If yes, invoice payment will be disabled.</comment>
+				</field>
+				<field id="check_prefix" type="select" sortOrder="180" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Check Prefix</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Check if the prefix of the billing/shipping address contains a not allowed value. If yes, invoice payment will be disabled</comment>
+				</field>
+				<field id="disabled_prefix" type="text" sortOrder="190" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Disabled Prefix Options</label>
+					<comment>Semicolon (;) separated values.</comment>
+					<depends>
+					    <field id="check_prefix">1</field>
+					</depends>
+				</field>
+				<field id="create_invoice" type="select" sortOrder="200" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Automatically Create Invoice</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="invoice_state" type="select" sortOrder="210" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Invoice State</label>
+					<source_model>Printq\PaymentMethods\Model\Config\Source\Openpaid</source_model>
+				</field>
+				<field id="send_invoice_email" type="select" sortOrder="220" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Send Invoice Email</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="max_net_value" type="text" sortOrder="230" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Only if net value is lower than</label>
+					<comment>Default: "0" for disabled check | Invoice will be created only if the order net value is lower than filled value.</comment>
+				</field>
+				<field id="vat_id_validation_regex" type="text" sortOrder="240" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>VAT ID validation regEx</label>
+					<depends>
+					    <field id="enable_check_vat_id">1</field>
+					</depends>
+					<comment>Enter a regular expression which shall be used for the VAT ID validation.</comment>
+				</field>
+				<field id="enable_check_vat_id" type="select" sortOrder="250" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+					<label>Check VAT ID</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Check if the customer's VAT ID contains a valid value. Reference for valid value is regEx below. If validation is false, payment method will be disabled.</comment>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

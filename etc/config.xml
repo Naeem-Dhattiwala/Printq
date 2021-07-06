@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<payment>
+			<paymentmethods>
+				<active>1</active>
+				<model>Printq\PaymentMethods\Model\Payment\PaymentMethods</model>
+				<order_status>pending</order_status>
+				<title>PaymentMethods</title>
+				<allowspecific>0</allowspecific>
+				<sortorder>0</sortorder>
+				<paymentdue>10</paymentdue>
+				<specificgroup_all>1</specificgroup_all>
+                <specificgroup>0</specificgroup>
+                <customer_order_count>0</customer_order_count>
+                <customer_order_amount>0</customer_order_amount>
+                <check_open_invoices>0</check_open_invoices>
+                <check_addresses>0</check_addresses>
+                <check_prefix>0</check_prefix>
+                <create_invoice>0</create_invoice>
+                <invoice_state>1</invoice_state>
+                <send_invoice_email>1</send_invoice_email>
+                <calculate_due_date>0</calculate_due_date>
+                <enable_for_register_checkout>0</enable_for_register_checkout>
+                <enable_custom_min_order_total>0</enable_custom_min_order_total>
+                <custom_min_order_total>0</custom_min_order_total>
+                <max_net_value>0</max_net_value>
+				<group>offline</group>
+			</paymentmethods>
+		</payment>
+	</default>
+</config>

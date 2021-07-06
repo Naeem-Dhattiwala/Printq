@@ -1,0 +1,22 @@
+{
+    "name": "printq/module-paymentmethods",
+    "description": "PrintQ Payment  Method",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "CloudLab Team",
+            "email": "kp@cloudlab.at"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Printq\\PaymentMethods\\": ""
+        }
+    }
+}
